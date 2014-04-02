@@ -44,12 +44,12 @@ class HotspotAdminMixin(object):
         except AttributeError:
             logger.error("Could not resolve ImageField %s for %s(pk=%d)." % (
                 image_field, unicode(self.model), instance_pk))
-            return Http404()
+            raise Http404()
 
         if field:
             if not isinstance(field, ImageFieldFile):
                 logger.error("%s is not an ImageField." % (image_field))
-                return Http404()
+                raise Http404()
 
             thumbnailer = get_thumbnailer(field)
             thumbnail_options = {
