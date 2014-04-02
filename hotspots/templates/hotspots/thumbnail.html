@@ -1,0 +1,10 @@
+<div class="hotspots">
+  {% if error %}
+    <p>{{ error }}</p>
+  {% else %}
+    <div class="image-wrapper">
+      <img src="{{ thumbnail.url }}" />
+      <div class="marker">+</div>
+    </div>
+  {% endif %}
+</div>

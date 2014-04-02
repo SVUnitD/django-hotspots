@@ -1,0 +1,22 @@
+.hotspots .image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.hotspots .image-wrapper img:hover { cursor: crosshair; }
+.hotspots .image-wrapper .marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+
+  background-color: #0098f8;
+  border: 1px solid #003E5C;
+  opacity: 0.6;
+
+  color: #fff;
+  text-align: center;
+  line-height: 15px;
+  font-size: 14px;
+}
