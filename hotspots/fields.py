@@ -22,3 +22,14 @@ class HotspotField(models.CharField):
         field_class = "django.db.models.fields.CharField"
         args, kwargs = introspector(self)
         return (field_class, args, kwargs)
+
+    def deconstruct(self):
+        """
+        Needed for Django 1.7+ migrations. Generate args and kwargs from current
+        field values.
+        """
+        name, path, args, kwargs = super(HotspotField, self).deconstruct()
+        del kwargs['max_length']
+        del kwargs['blank']
+        kwargs['image_field'] = self.image_field
+        return name, path, args, kwargs
