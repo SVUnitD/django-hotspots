@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name="django-hotspots",
     author="Jonas und der Wolf GmbH",
-    author_email="jvp@jonasundderwolf.de",
+    author_email="info@jonasundderwolf.de",
     version='0.1',
     packages=find_packages(),
     package_data=finddata.find_package_data(),
