@@ -4,7 +4,7 @@ from django.conf import settings
 from django.template import RequestContext
 from django.conf.urls import url
 from django.db.models.fields.files import ImageFieldFile
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, render
 
 from easy_thumbnails.files import get_thumbnailer
 
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 class HotspotAdminMixin(object):
     def get_urls(self):
         urls = [
-            url(r'^(\d+)/hotspot_thumbnail/$',
+            url(r'^(\d+)/change/hotspot_thumbnail/$',
                 self.admin_site.admin_view(self.hotspot_thumbnail))
         ]
         return urls + super(HotspotAdminMixin, self).get_urls()
@@ -42,7 +42,7 @@ class HotspotAdminMixin(object):
 
         except AttributeError:
             logger.error("Could not resolve ImageField %s for %s(pk=%d)." % (
-                image_field, unicode(self.model), instance_pk))
+                image_field, str(self.model), instance_pk))
             raise Http404()
 
         if field:
@@ -57,11 +57,11 @@ class HotspotAdminMixin(object):
             }
             thumb = thumbnailer.get_thumbnail(thumbnail_options)
 
-        return render_to_response(
+        return render(
+            request,
             'hotspots/thumbnail.html',
             {
                 'thumbnail': thumb,
                 'error': error,
             },
-            context_instance=RequestContext(request)
         )
