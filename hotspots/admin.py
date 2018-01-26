@@ -2,7 +2,7 @@ import logging
 from django.http import Http404
 from django.conf import settings
 from django.template import RequestContext
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.db.models.fields.files import ImageFieldFile
 from django.shortcuts import get_object_or_404, render_to_response
 
@@ -13,11 +13,10 @@ logger = logging.getLogger(__name__)
 
 class HotspotAdminMixin(object):
     def get_urls(self):
-        urls = patterns(
-            '',
+        urls = [
             url(r'^(\d+)/hotspot_thumbnail/$',
                 self.admin_site.admin_view(self.hotspot_thumbnail))
-        )
+        ]
         return urls + super(HotspotAdminMixin, self).get_urls()
 
     def hotspot_thumbnail(self, request, instance_pk):
