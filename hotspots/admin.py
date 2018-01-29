@@ -15,7 +15,7 @@ class HotspotAdminMixin(object):
     def get_urls(self):
         urls = [
             url(r'^(\d+)/change/hotspot_thumbnail/$',
-                self.admin_site.admin_view(self.hotspot_thumbnail))
+                self.admin_site.admin_view(self.hotspot_thumbnail)),
             url(r'^add/hotspot_thumbnail/$',
                 self.admin_site.admin_view(self.hotspot_thumbnail))
         ]
